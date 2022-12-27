@@ -8,4 +8,4 @@ An API with a collection of divition algorithms
 
 ### Todo Back
 - [ ] add euclidean algorithm.
-- [ ] add fast algorithms
+- [ ] add fast algorithms# dividers
