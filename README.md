@@ -1,0 +1,1 @@
+An API with a collection of divition algorithms
