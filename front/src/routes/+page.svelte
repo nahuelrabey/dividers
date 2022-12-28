@@ -1,4 +1,5 @@
 <script>
+	import Katex from 'svelte-katex';
 
 	/**
 	 * @type {number}
@@ -9,15 +10,22 @@
 	 */
 	let denominator = 0;
 
-	let response = ""
+	let quotient = 0;
+	let rest = 0;
+	let error = '';
 	async function divide() {
+		if (denominator == 0){
+			error = "You can't divide by zero my friend"
+			return
+		}
+
+		error = ''
+
 		const res = await fetch(`http://localhost:5000/python?num=${numerator}&den=${denominator}`);
 		const [Q, R] = await res.json();
-		
-		response = `
-		quotient: ${Q}\n
-		rest: ${R}
-		`
+
+		quotient = Q;
+		rest = R;
 	}
 </script>
 
@@ -36,24 +44,37 @@
 	</p>
 
 	<h2>Python Algorithm</h2>
+
 	<p>
-		This uses the python algorithm to calculate the quotient and rest. If the numerator is positive,
-		it calculates the division and then floors the result to calculate the quotient. Else, then
-		calculates and ceil the result to get the quotient.
+		Dividers API has a demonstration of the native division operator in python. We divide two
+		numbers a/b, resulting in a float.
 	</p>
 
-	<div class="input-wrap">
-		<label for="numerator">numerator: </label>
-		<input type="number" name="numerator" id="numerator" bind:value={numerator}>
+	<p>
+		If the result is larger than zero, later it will be rounded down (with the math.floor function)
+		to the nearest integer; if it's less than zero, then it will be rounded up (with the math.ceil
+		function) to the nearest integer.
+	</p>
+
+	<p>To get the rest we simply subtract from the numerator the quotient.</p>
+
+	<div class="panel">
+		<div class="input-wrap">
+			<label for="numerator">numerator: </label>
+			<input type="number" name="numerator" id="numerator" bind:value={numerator} />
+		</div>
+
+		<div class="input-wrap">
+			<label for="denominator">denominator: </label>
+			<input type="number" name="denominator" id="denominator" bind:value={denominator} />
+		</div>
+
+		<button on:click={divide}>Calculate!</button>
+		
+		<span class=alert>{error}</span>
 	</div>
 
-	<div class="input-wrap">
-		<label for="denominator">denominator: </label>
-		<input type="number" name="denominator" id="denominator" bind:value={denominator}>	
-	</div>
-
-	<button on:click={divide}>Calculate!</button>
-	<p>{response}</p>
+	<Katex displayMode>\frac{`{${numerator}}`}{`{${denominator}}`} = ({quotient}, {rest})</Katex>
 </section>
 
 <style>
@@ -61,7 +82,46 @@
 		width: 50%;
 		margin: auto;
 	}
+
+	h1,
+	h2,
+	p,
+	span,
+	label {
+		font-family: sans-serif;
+	}
+	p {
+		text-align: justify;
+	}
+
+	.panel {
+		margin: 2em 0;
+	}
+	.panel button {
+		margin: auto;
+		display: block;
+		padding: 0.5em 2em;
+		border: none;
+		border-radius: 10px;
+		background-color: rgb(250, 96, 30);
+		color: white;
+	}
+	.panel button:hover {
+		cursor: pointer;
+		background-color: rgb(255, 132, 79);
+		color: white;
+	}
 	.input-wrap {
+		width: 50%;
+		margin: 1em auto;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.alert {
+		text-align: center;
+		color: red;
+		display: block;
 		margin: 1em 0;
 	}
 </style>
