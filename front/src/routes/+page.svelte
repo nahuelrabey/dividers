@@ -1,32 +1,8 @@
 <script>
-	import Katex from 'svelte-katex';
-
-	/**
-	 * @type {number}
-	 */
-	let numerator = 0;
-	/**
-	 * @type {number}
-	 */
-	let denominator = 0;
-
-	let quotient = 0;
-	let rest = 0;
-	let error = '';
-	async function divide() {
-		if (denominator == 0){
-			error = "You can't divide by zero my friend"
-			return
-		}
-
-		error = ''
-
-		const res = await fetch(`http://localhost:5000/python?num=${numerator}&den=${denominator}`);
-		const [Q, R] = await res.json();
-
-		quotient = Q;
-		rest = R;
-	}
+	import PythonDivision from '$lib/pythonDivision.svelte';
+	import PythonWithDecimals from '$lib/pythonWithDecimals.svelte';
+	import PythonDivisionWithDecimals from '$lib/pythonWithDecimals.svelte';
+	import './styles.css';
 </script>
 
 <svelte:head>
@@ -58,70 +34,25 @@
 
 	<p>To get the rest we simply subtract from the numerator the quotient.</p>
 
-	<div class="panel">
-		<div class="input-wrap">
-			<label for="numerator">numerator: </label>
-			<input type="number" name="numerator" id="numerator" bind:value={numerator} />
-		</div>
+	<PythonDivision />
 
-		<div class="input-wrap">
-			<label for="denominator">denominator: </label>
-			<input type="number" name="denominator" id="denominator" bind:value={denominator} />
-		</div>
+	<h2>Get all decimals!</h2>
+	<p>
+		Lately, I've wanted to study repeated decimals of prime numbers divisions. So I made a function
+		that returns an array of each division step.
+	</p>
+	<p>
+		To go a step further in the division, multiply by ten the rest and use it as the new numerator
+		for the division (this is what some of us learned as 'long-division' in school).
+	</p>
+	<p>Try it and see!</p>
 
-		<button on:click={divide}>Calculate!</button>
-		
-		<span class=alert>{error}</span>
-	</div>
-
-	<Katex displayMode>\frac{`{${numerator}}`}{`{${denominator}}`} = ({quotient}, {rest})</Katex>
+	<PythonWithDecimals/>
 </section>
 
 <style>
 	section {
 		width: 50%;
 		margin: auto;
-	}
-
-	h1,
-	h2,
-	p,
-	span,
-	label {
-		font-family: sans-serif;
-	}
-	p {
-		text-align: justify;
-	}
-
-	.panel {
-		margin: 2em 0;
-	}
-	.panel button {
-		margin: auto;
-		display: block;
-		padding: 0.5em 2em;
-		border: none;
-		border-radius: 10px;
-		background-color: rgb(250, 96, 30);
-		color: white;
-	}
-	.panel button:hover {
-		cursor: pointer;
-		background-color: rgb(255, 132, 79);
-		color: white;
-	}
-	.input-wrap {
-		width: 50%;
-		margin: 1em auto;
-		display: flex;
-		justify-content: space-between;
-	}
-
-	.alert {
-		text-align: center;
-		color: red;
-		display: block;
-		margin: 1em 0;
 	}
 </style>

@@ -1,0 +1,11 @@
+h1,
+h2,
+p,
+label,
+span {
+	font-family: sans-serif;
+}
+
+p {
+    text-align: justify;
+}
