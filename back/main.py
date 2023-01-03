@@ -7,7 +7,7 @@ CORS(app)
 
 @app.route("/")
 def hello_world():
-    return "<h1> Division Site 😎 </h1>"
+    return "<h1> Diveders Api 😎 </h1>"
 
 @app.route("/python")
 def python_divide():
