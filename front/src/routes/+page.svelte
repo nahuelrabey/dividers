@@ -22,28 +22,24 @@
 	<h2>Python Algorithm</h2>
 
 	<p>
-		Dividers API has a demonstration of the native division operator in python. We divide two
-		numbers a/b, resulting in a float.
+		The Dividers API demonstrates how to use the native division operator in
+		Python. When we divide two numbers, a/b, the result is a float. If the
+		result is greater than zero, we round it down to the nearest integer
+		using the math.floor function. If it's less than zero, we round it up to
+		the nearest integer using the math.ceil function. To find the remainder,
+		we subtract the quotient from the numerator.
 	</p>
-
-	<p>
-		If the result is larger than zero, later it will be rounded down (with the math.floor function)
-		to the nearest integer; if it's less than zero, then it will be rounded up (with the math.ceil
-		function) to the nearest integer.
-	</p>
-
-	<p>To get the rest we simply subtract from the numerator the quotient.</p>
 
 	<PythonDivision />
 
 	<h2>Get all decimals!</h2>
 	<p>
-		Lately, I've wanted to study repeated decimals of prime numbers divisions. So I made a function
-		that returns an array of each division step.
-	</p>
-	<p>
-		To go a step further in the division, multiply by ten the rest and use it as the new numerator
-		for the division (this is what some of us learned as 'long-division' in school).
+		I've been interested in studying the repeating decimals that result from
+		dividing prime numbers, so I created a function that returns an array of
+		each step in the division process. To move to the next step in the
+		division, multiply the remainder by ten and use it as the new numerator
+		for the division (this is similar to the long division method taught in
+		school). Give it a try and see what you find!
 	</p>
 	<p>Try it and see!</p>
 
