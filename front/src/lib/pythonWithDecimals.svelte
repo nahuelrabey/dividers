@@ -14,9 +14,8 @@
 		}
 
 		error = '';
-
 		const res = await fetch(
-			`http://localhost:5000/python/withdecimals?num=${numerator}&den=${denominator}&steps=${steps}`
+			`http://dividers.nahuelrabey.com/api/python/withdecimals?num=${numerator}&den=${denominator}&steps=${steps}`
 		);
 		const json = await res.json()
 		list = json.slice(1)

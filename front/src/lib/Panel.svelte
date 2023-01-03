@@ -1,6 +1,6 @@
 
 <script lang="ts">
-	import Input from "$lib/NumberInput.svelte"
+	// import Input from "$lib/NumberInput.svelte"
 	export let onclick: ()=>void;
 </script>
 

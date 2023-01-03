@@ -15,7 +15,9 @@
 
 		error = '';
 
-		const res = await fetch(`http://localhost:5000/python?num=${numerator}&den=${denominator}`);
+		const res = await fetch(
+			`http://dividers.nahuelrabey.com/api/python?num=${numerator}&den=${denominator}`
+		);
 		const [Q, R] = await res.json();
 
 		quotient = Q;
@@ -23,7 +25,7 @@
 	}
 </script>
 
-<Panel bind:numerator bind:denominator onclick={divide}/>
+<Panel bind:numerator bind:denominator onclick={divide} />
 <span class="alert">{error}</span>
 <Katex displayMode>\frac{`{${numerator}}`}{`{${denominator}}`} = ({quotient}, {rest})</Katex>
 
