@@ -1,16 +1,10 @@
 
 <script lang="ts">
-	// import Input from "$lib/NumberInput.svelte"
 	export let onclick: ()=>void;
 </script>
 
 <div class="panel">
-	<!-- <div class="input-wrap">
-		<label for="numerator">numerator: </label>
-		<input type="number" name="numerator" id="numerator" bind:value={numerator} />
-	</div> -->
     <slot></slot>
-
 	<button on:click={onclick}>Calculate!</button>
 </div>
 
