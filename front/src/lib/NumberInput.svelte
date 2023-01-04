@@ -17,6 +17,12 @@
 		width: 80%;
 		margin: 1em auto;
 	}
+	.mobile input {
+		width: 4em;
+	}
+	input {
+		text-align: center;
+	}
 	div {
 		width: 50%;
 		margin: 1em auto;
